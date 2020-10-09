@@ -1,0 +1,11 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: kiwami
+Source: https://github.com/chuahou/kiwami
+
+Files: debian/*
+Copyright: 2020 Chua Hou <human+github@chuahou.dev>
+License: MIT
+
+Files: scripts/*
+Copyright: 2020 Chua Hou <human+github@chuahou.dev>
+License: MIT
