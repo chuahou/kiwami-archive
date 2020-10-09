@@ -10,8 +10,8 @@ build:
 		debuild -us -uc -b; \
 		debuild -T clean
 
-install: build
-	sudo apt-get install *.deb
+install:
+	sudo apt-get install ./*.deb
 
 clean:
-	rm *.deb *.build *.buildinfo *.changes
+	rm *.deb *.build *.buildinfo *.changes || true
