@@ -1,4 +1,4 @@
 #!/usr/bin/env -S make -f
 
 %:
-	dh $@ --builddirectory=build
+	dh $@
