@@ -1,0 +1,12 @@
+Source:            kiwami
+Maintainer:        Chua Hou <human+github@chuahou.dev>
+Section:           misc
+Priority:          optional
+Standards-Version: 3.9.2
+Build-Depends:     debhelper (>= 11)
+Homepage:          https://github.com/chuahou/kiwami
+
+Package:      kiwami-scripts
+Architecture: any
+Depends:      ${shlibs:Depends}, ${misc:Depends}
+Description:  Miscellanous scripts
