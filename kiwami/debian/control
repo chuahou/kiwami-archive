@@ -58,6 +58,7 @@ Depends:      ${shlibs:Depends}, ${misc:Depends},
  curl,
  cpufrequtils,
  gawk,
+ libnotify-bin,
  snapd,
  tree,
  zsh
