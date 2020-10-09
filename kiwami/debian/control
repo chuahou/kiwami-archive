@@ -22,21 +22,44 @@ Description:  Miscellaneous scripts
 Package:      kiwami-pkgs
 Architecture: any
 Depends:      ${shlibs:Depends}, ${misc:Depends},
+# Development
  build-essential,
  cmake,
- doxygen,
- doxygen-gui,
  git,
- git-lfs,
  gitg,
- graphviz,
  haskell-platform,
  meld,
+# User programs
+ flameshot,
+ gimp,
  neovim,
+ libreoffice,
+ nautilus-dropbox,
+ pandoc,
+ pdf2svg,
+ pdftk,
+ vlc,
+ zathura,
+# LaTeX
  texlive,
  texlive-fonts-extra,
  texlive-latex-extra,
  texlive-science,
- texlive-xetex
+ texlive-xetex,
+ latex-cjk-all,
+# Fonts
+ fonts-ipaexfont-gothic,
+ fonts-materialdesignicons-webfont,
+# IME
+ ibus,
+ ibus-mozc,
+ mozc-utils-gui,
+# System
+ curl,
+ cpufrequtils,
+ gawk,
+ snapd,
+ tree,
+ zsh
 Description: Customized metapackage
  Depends on standard apt packages I want.
