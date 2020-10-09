@@ -3,15 +3,15 @@
 
 .PHONY: all build install clean
 
-all: build
-
 build:
 	cd kiwami; \
 		debuild -us -uc -b; \
 		debuild -T clean
 
+all: | build install
+
 install:
-	apt-get install ./*.deb
+	sudo apt-get install ./*.deb
 
 clean:
 	rm *.deb *.build *.buildinfo *.changes || true
