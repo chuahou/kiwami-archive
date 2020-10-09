@@ -9,4 +9,4 @@ Homepage:          https://github.com/chuahou/kiwami
 Package:      kiwami-scripts
 Architecture: any
 Depends:      ${shlibs:Depends}, ${misc:Depends}
-Description:  Miscellanous scripts
+Description:  Miscellaneous scripts
