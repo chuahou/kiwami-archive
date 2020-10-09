@@ -11,7 +11,7 @@ build:
 		debuild -T clean
 
 install:
-	sudo apt-get install ./*.deb
+	apt-get install ./*.deb
 
 clean:
 	rm *.deb *.build *.buildinfo *.changes || true
