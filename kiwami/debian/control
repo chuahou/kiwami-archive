@@ -30,6 +30,7 @@ Depends:      ${shlibs:Depends}, ${misc:Depends},
  haskell-platform,
  meld,
 # User programs
+ alacritty,
  flameshot,
  gimp,
  neovim,
@@ -64,3 +65,17 @@ Depends:      ${shlibs:Depends}, ${misc:Depends},
  zsh
 Description: Customized metapackage
  Depends on standard apt packages I want.
+
+Package:      kiwami-ppa-pkgs
+Architecture: any
+Depends:      ${shlibs:Depends}, ${misc:Depends},
+# kgilmer/speed-ricer
+ compton,
+ dunst,
+ fonts-source-code-pro-ttf,
+ i3-gaps,
+ polybar,
+ rofi
+Description:  Extra PPA source files
+ Contains extra packages that can only be installed after adding PPAs. Depends
+ on ppa:kgilmer/speed-ricer.
