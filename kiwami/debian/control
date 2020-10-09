@@ -6,7 +6,37 @@ Standards-Version: 3.9.2
 Build-Depends:     debhelper (>= 11)
 Homepage:          https://github.com/chuahou/kiwami
 
+Package:      kiwami-all
+Architecture: any
+Depends:      ${shlibs:Depends}, ${misc:Depends},
+ kiwami-scripts,
+ kiwami-pkgs
+Description:  kiwami metapackage
+ Depends on all packages below.
+
 Package:      kiwami-scripts
 Architecture: any
 Depends:      ${shlibs:Depends}, ${misc:Depends}
 Description:  Miscellaneous scripts
+
+Package:      kiwami-pkgs
+Architecture: any
+Depends:      ${shlibs:Depends}, ${misc:Depends},
+ build-essential,
+ cmake,
+ doxygen,
+ doxygen-gui,
+ git,
+ git-lfs,
+ gitg,
+ graphviz,
+ haskell-platform,
+ meld,
+ neovim,
+ texlive,
+ texlive-fonts-extra,
+ texlive-latex-extra,
+ texlive-science,
+ texlive-xetex
+Description: Customized metapackage
+ Depends on standard apt packages I want.
