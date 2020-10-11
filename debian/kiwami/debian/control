@@ -65,7 +65,15 @@ Depends:      ${shlibs:Depends}, ${misc:Depends},
  libnotify-bin,
  snapd,
  tree,
- zsh
+ zsh,
+# For coc.nvim
+ nodejs,
+ npm,
+# For haskell-language-server
+ libicu-dev,
+ libncurses-dev,
+ libgmp-dev,
+ zlib1g-dev
 Description: Customized metapackage
  Depends on standard apt packages I want.
 
