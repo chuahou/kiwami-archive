@@ -1,1 +1,1 @@
-scripts/prepend-date usr/bin
+scripts/* usr/bin

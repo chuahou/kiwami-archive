@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#
+# Checks for presence / absence of root privileges.
+#
+# USAGE:
+#	check-root root - check we are root
+#	check-root user - check not root
+
+# ensure 1 argument, otherwise print usage
+if [ "$#" -ne 1 ]; then
+	echo "USAGE:"
+	echo "    check-root root - check we are root"
+	echo "    check-root user - check not root"
+	exit 1
+fi
+
+# check for root if $1 = root
+case "$1" in
+	"root")
+		if [ "$EUID" -ne 0 ]; then
+			echo "Run as ROOT."
+			exit 1 # fail test
+		fi
+		;;
+	"user")
+		if [ "$EUID" -eq 0 ]; then
+			echo "Do NOT run as ROOT."
+			exit 1 # fail test
+		fi
+		;;
+esac
