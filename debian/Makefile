@@ -20,6 +20,10 @@ KIWAMI_PKGS := \
 	kiwami-ppa-pkgs.deb \
 	kiwami-scripts.deb
 
+pkgs: kiwami-pkgs.deb kiwami-ppa-pkgs.deb
+	sudo dpkg -i $^ || sudo apt-get install -fy
+	$(call clean_aux)
+
 # Build all and install
 all: $(KIWAMI_PKGS) fonts-iosevka.deb
 	sudo dpkg -i $^ || sudo apt-get install -fy
@@ -63,4 +67,4 @@ clean: cleanaux
 cleanaux:
 	$(call clean_aux)
 
-.PHONY: all clean cleanaux ppas
+.PHONY: all clean cleanaux ppas pkgs
