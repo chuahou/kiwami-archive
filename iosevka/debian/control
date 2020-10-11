@@ -1,0 +1,15 @@
+Source:            fonts-iosevka
+Maintainer:        Chua Hou <human+github@chuahou.dev>
+Section:           fonts
+Priority:          optional
+Standards-Version: 3.9.2
+Build-Depends:     debhelper (>= 11)
+Homepage:          https://github.com/be5invis/Iosevka
+
+Package:      fonts-iosevka
+Architecture: all
+Multi-Arch:   foreign
+Depends:      ${shlibs:Depends}, ${misc:Depends}
+Description:  Convenient package for built Iosevka release
+ Contains my packaging of the built binary release of Iosevka from the GitHub
+ releases for private use.
