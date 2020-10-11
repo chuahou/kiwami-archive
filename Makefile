@@ -8,6 +8,11 @@ define build_deb
 debuild -us -uc -b && debuild -T clean
 endef
 
+# Function for cleaning auxiliary files
+define clean_aux
+rm *.build *.buildinfo *.changes || true
+endef
+
 # List of kiwami packages to build
 KIWAMI_PKGS := \
 	kiwami-all.deb \
@@ -18,6 +23,7 @@ KIWAMI_PKGS := \
 # Build all and install
 all: $(KIWAMI_PKGS) fonts-iosevka.deb
 	sudo dpkg -i $^ || sudo apt-get install -fy
+	$(call clean_aux)
 
 # Build kiwami packages
 $(KIWAMI_PKGS) &: kiwami $(shell find kiwami -type f)
@@ -55,6 +61,6 @@ clean: cleanaux
 
 # Clean up auxiliary outputs
 cleanaux:
-	rm *.build *.buildinfo *.changes || true
+	$(call clean_aux)
 
 .PHONY: all clean cleanaux ppas
