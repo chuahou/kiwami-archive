@@ -22,5 +22,5 @@ SOFTWARE.
 
 ---
 
-The files under iosevka/iosevka/* are licensed under a different license; the
-license file may be found at iosevka/iosevka/LICENSE.md.
+The files under debian/iosevka/iosevka/* are licensed under a different license;
+the license file may be found at debian/iosevka/iosevka/LICENSE.md.
