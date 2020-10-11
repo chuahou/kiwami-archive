@@ -1,5 +1,5 @@
-debian/files
-debian/.debhelper
+*/debian/files
+*/debian/.debhelper
 *.build
 *.buildinfo
 *.changes
