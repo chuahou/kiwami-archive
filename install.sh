@@ -6,6 +6,9 @@
 
 set -e
 
+# List of package folders
+PKG_DIRS="kiwami iosevka"
+
 # Directory script is located in
 SCRIPTDIR=$(realpath $(dirname $0))
 
@@ -33,6 +36,14 @@ build()
 	debuild -T clean # clean up after
 }
 
+# Builds all packages listed in PKG_DIRS
+build_all()
+{
+	for pkg in $PKG_DIRS; do
+		(cd $SCRIPTDIR/$pkg && build)
+	done
+}
+
 # Installs all built packages
 install_all()
 {
@@ -50,10 +61,6 @@ clean_all()
 }
 
 add_ppas
-
-cd "$SCRIPTDIR/kiwami"
-build
-
-cd "$SCRIPTDIR"
+build_all
 install_all
 clean_all
