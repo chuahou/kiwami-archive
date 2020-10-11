@@ -10,7 +10,8 @@ Package:      kiwami-all
 Architecture: any
 Depends:      ${shlibs:Depends}, ${misc:Depends},
  kiwami-scripts,
- kiwami-pkgs
+ kiwami-pkgs,
+ kiwami-ppa-pkgs
 Description:  kiwami metapackage
  Depends on all packages below.
 
@@ -40,6 +41,7 @@ Depends:      ${shlibs:Depends}, ${misc:Depends},
  pandoc,
  pdf2svg,
  pdftk,
+ telegram-desktop,
  vlc,
  zathura,
 # LaTeX
