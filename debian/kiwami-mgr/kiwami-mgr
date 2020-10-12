@@ -10,8 +10,20 @@ SCRIPT_LOCATION=/usr/lib/kiwami-mgr
 
 usage() {
 	echo "Usage: kiwami-mgr (install|uninstall) [package] [arguments]"
+	echo "       kiwami-mgr init to install EVERYTHING for the first time"
 	exit 1
 }
+
+# init option: install everything!
+if [[ "$1" == "init" ]]; then
+	for pkg in hls stack; do
+		$SCRIPT_LOCATION/$pkg/install.sh
+	done
+	for pkg in nordvpn rst-tools; do
+		sudo $SCRIPT_LOCATION/$pkg/install.sh
+	done
+	exit 0
+fi
 
 if [[ "$#" -lt 2 ]]; then
 	usage
