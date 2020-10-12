@@ -17,4 +17,4 @@ _kiwami_mgr_complete() {
 	esac
 }
 
-complete -F _kiwami_mgr_complete kiwami-mgr
+complete -o bashdefault -o default -F _kiwami_mgr_complete kiwami-mgr
