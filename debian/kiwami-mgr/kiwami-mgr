@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2020 Chua Hou
+#
+# Parent script that calls other scripts.
+
+set -e
+
+SCRIPT_LOCATION=/usr/lib/kiwami-mgr
+
+usage() {
+	echo "Usage: kiwami-mgr (install|uninstall) [package] [arguments]"
+	exit 1
+}
+
+if [[ "$#" -le 2 ]]; then
+	usage
+fi
+
+INSTALL_ARG=$1
+PACKAGE_ARG=$2
+
+# we support this package if the directory exists
+SCRIPT_DIR=$SCRIPT_LOCATION/$PACKAGE_ARG
+if [ ! -d $SCRIPT_DIR ]; then
+	echo "Unknown package $PACKAGE_ARG"
+	exit 1
+fi
+
+# if we are installing / uninstalling, choose the appropriate script
+case $INSTALL_ARG in
+	install)   SCRIPT=$SCRIPT_LOCATION/$PACKAGE_ARG/install.sh   ;;
+	uninstall) SCRIPT=$SCRIPT_LOCATION/$PACKAGE_ARG/uninstall.sh ;;
+	*) usage ;;
+esac
+
+# run script if it exists
+if [ -f $SCRIPT ]; then
+	shift 2
+	$SCRIPT "$@"
+else
+	echo "Package $PACKAGE_ARG does not have an $INSTALL_ARG script..."
+	exit 1
+fi

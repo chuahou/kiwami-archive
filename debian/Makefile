@@ -28,7 +28,7 @@ SHELL := bash
 BUILD_DIR := build
 
 # List of packages to build
-PKGS := kiwami-pkgs kiwami-scripts fonts-iosevka
+PKGS := kiwami-pkgs kiwami-scripts kiwami-mgr fonts-iosevka
 
 # Dummy targets
 # Building dummy target involves building corresponding deb and installing it.
@@ -80,6 +80,10 @@ $(BUILD_DIR)/kiwami-pkgs.deb: kiwami-pkgs $(shell find kiwami-pkgs -type f)
 	$(call clean_aux)
 
 $(BUILD_DIR)/kiwami-scripts.deb: kiwami-scripts $(shell find kiwami-scripts -type f)
+	$(call build_pkg,$<)
+	$(call clean_aux)
+
+$(BUILD_DIR)/kiwami-mgr.deb: kiwami-mgr $(shell find kiwami-mgr -type f)
 	$(call build_pkg,$<)
 	$(call clean_aux)
 
