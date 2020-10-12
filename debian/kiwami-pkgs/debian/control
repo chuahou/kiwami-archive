@@ -41,6 +41,7 @@ Depends:      ${shlibs:Depends}, ${misc:Depends},
 # Fonts
  fonts-ipaexfont-gothic,
  fonts-materialdesignicons-webfont,
+ ttf-mscorefonts-installer,
 # IME
  ibus,
  ibus-mozc,
