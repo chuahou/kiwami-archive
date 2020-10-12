@@ -1,7 +1,9 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2020 Chua Hou
 
-SHELL := bash
+#####################
+##### Functions #####
+#####################
 
 # Function for building package and cleaning up after
 define build_deb
@@ -13,40 +15,59 @@ define clean_aux
 rm *.build *.buildinfo *.changes || true
 endef
 
-# List of kiwami packages to build
-KIWAMI_PKGS := \
-	kiwami-all.deb \
-	kiwami-pkgs.deb \
-	kiwami-ppa-pkgs.deb \
-	kiwami-scripts.deb
+#########################
+##### Configuration #####
+#########################
 
-pkgs: kiwami-pkgs.deb kiwami-ppa-pkgs.deb
-	sudo dpkg -i $^ || sudo apt-get install -fy
-	$(call clean_aux)
+# We use bash features in some of our rules' loops
+SHELL := bash
+
+# Build directory
+BUILD_DIR := build
+
+# List of kiwami packages to build
+KIWAMI_PKGS := kiwami-pkgs kiwami-ppa-pkgs kiwami-scripts
+KIWAMI_PKGS_BUILD := $(KIWAMI_PKGS:%=$(BUILD_DIR)/%.deb)
+
+# List of all packages including kiwami packages
+ALL_PKGS := $(KIWAMI_PKGS) fonts-iosevka
+ALL_PKGS_BUILD := $(ALL_PKGS:%=$(BUILD_DIR)/%.deb)
+
+# Dummy targets
+# Building dummy target involves building corresponding deb and installing it.
+# .dummy file is created upon dpkg installation, so we do not install packages
+# that are not outdated
+DUMMY_TGT := $(ALL_PKGS_BUILD:%.deb=%.dummy)
+
+# List of PPAs
+PPA_LIST := ppa.list
+
+# Dummy target for PPA addition
+DUMMY_PPA := $(PPA_LIST:%=$(BUILD_DIR)/%.dummy)
+
+#######################
+##### Phony rules #####
+#######################
+
+.PHONY: all clean cleanaux
 
 # Build all and install
-all: $(KIWAMI_PKGS) fonts-iosevka.deb
-	sudo dpkg -i $^ || sudo apt-get install -fy
+all: | $(DUMMY_PPA) $(DUMMY_TGT)
+
+# Clean up deb and auxiliary outputs
+clean: cleanaux
+	rm $(BUILD_DIR)/* || true
+
+# Clean up auxiliary outputs
+cleanaux:
 	$(call clean_aux)
 
-# Build kiwami packages
-$(KIWAMI_PKGS) &: kiwami $(shell find kiwami -type f)
-	@echo "Building kiwami packages..."
-	@rm $(KIWAMI_PKGS) || true
-	@cd $< && $(call build_deb)
-	@for pkg in $(KIWAMI_PKGS); do \
-		mv `sed 's/\.deb/*\.deb/' <<< $$pkg` $$pkg; \
-	done
+########################
+##### Manual rules #####
+########################
 
-# Build Iosevka package
-fonts-iosevka.deb: iosevka $(shell find iosevka -type f)
-	@echo "Building Iosevka package..."
-	@rm $@ || true
-	@cd $< && $(call build_deb)
-	@mv fonts-iosevka*.deb $@
-
-# Target to add PPAs listed in ppa.list
-ppas: ppa.list
+# Target to add PPAs listed in PPA_LIST
+$(DUMMY_PPA): $(PPA_LIST)
 	@echo "Adding PPAs listed in $<..."
 	@while read ppa; do \
 		grep -h "^deb.*$$ppa" /etc/apt/sources.list.d/* > /dev/null 2>&1; \
@@ -57,14 +78,32 @@ ppas: ppa.list
 			echo "ppa:$$ppa already added"; \
 		fi; \
 	done < $<
-	@echo
+	@touch $@
 
-# Clean up deb and auxiliary outputs
-clean: cleanaux
-	rm *.deb || true
-
-# Clean up auxiliary outputs
-cleanaux:
+# Build kiwami packages
+$(KIWAMI_PKGS_BUILD) &: kiwami $(shell find kiwami -type f)
+	@echo "Building kiwami packages..."
+	@rm $(KIWAMI_PKGS_BUILD) || true
+	@cd $< && $(call build_deb)
+	@mkdir -p $(BUILD_DIR)
+	@for pkg in $(KIWAMI_PKGS_BUILD); do \
+		mv `sed 's/$(BUILD_DIR)\/\(.*\)\.deb/\1\*\.deb/' <<< $$pkg` $$pkg; \
+	done
 	$(call clean_aux)
 
-.PHONY: all clean cleanaux ppas pkgs
+# Build Iosevka package
+$(BUILD_DIR)/fonts-iosevka.deb: iosevka $(shell find iosevka -type f)
+	@echo "Building Iosevka package..."
+	@rm $@ || true
+	@cd $< && $(call build_deb)
+	@mkdir -p $(BUILD_DIR)
+	@mv fonts-iosevka*.deb $@
+	$(call clean_aux)
+
+###########################
+##### Automated rules #####
+###########################
+
+%.dummy: %.deb
+	sudo dpkg -i $< || sudo apt-get install -fy
+	touch $@

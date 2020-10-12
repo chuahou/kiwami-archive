@@ -6,15 +6,6 @@ Standards-Version: 3.9.2
 Build-Depends:     debhelper (>= 11)
 Homepage:          https://github.com/chuahou/kiwami
 
-Package:      kiwami-all
-Architecture: any
-Depends:      ${shlibs:Depends}, ${misc:Depends},
- kiwami-scripts,
- kiwami-pkgs,
- kiwami-ppa-pkgs
-Description:  kiwami metapackage
- Depends on all packages below.
-
 Package:      kiwami-scripts
 Architecture: any
 Depends:      ${shlibs:Depends}, ${misc:Depends}
