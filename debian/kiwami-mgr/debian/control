@@ -8,6 +8,8 @@ Homepage:          https://github.com/chuahou/kiwami
 
 Package:      kiwami-mgr
 Architecture: any
-Depends:      ${shlibs:Depends}, ${misc:Depends}
+Depends:      ${shlibs:Depends}, ${misc:Depends},
+# For rst-tools
+ python3-pip
 Description:  Package containing multiple install / uninstall scripts for
  pseudo-package management
