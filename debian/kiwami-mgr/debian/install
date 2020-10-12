@@ -1,2 +1,4 @@
 scripts/* usr/lib/kiwami-mgr
 kiwami-mgr usr/bin
+completion/kiwami-mgr-completion.bash etc/bash_completion.d
+completion/_kiwami-mgr usr/share/zsh/vendor-completions

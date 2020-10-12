@@ -1,0 +1,12 @@
+#compdef kiwami-mgr
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2020 Chua Hou
+
+SCRIPT_LOCATION=/usr/lib/kiwami-mgr
+
+local state
+_arguments '1:action:(install uninstall)' '2:package:->pkgs' '*: :_files'
+
+case $state in
+	pkgs) _describe 'package' "($(ls $SCRIPT_LOCATION))" ;;
+esac
