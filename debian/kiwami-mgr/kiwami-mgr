@@ -16,12 +16,13 @@ usage() {
 
 # init option: install everything!
 if [[ "$1" == "init" ]]; then
-	for pkg in hls stack; do
-		$SCRIPT_LOCATION/$pkg/install.sh
-	done
 	for pkg in nordvpn rst-tools; do
 		sudo $SCRIPT_LOCATION/$pkg/install.sh
 	done
+	for pkg in hls stack; do
+		$SCRIPT_LOCATION/$pkg/install.sh
+	done
+	$SCRIPT_LOCATION/zsh-plugins/install.sh
 	exit 0
 fi
 
