@@ -6,8 +6,10 @@
 #####################
 
 # Function for building package and cleaning up after
-define build_deb
-debuild -us -uc -b && debuild -T clean
+# First argument is package name, builds package in folder $(1) to file in
+# $(BUILD_DIR)/$(1).deb
+define build_pkg
+./build_pkg.sh $(1) $(BUILD_DIR)
 endef
 
 # Function for cleaning auxiliary files
@@ -25,24 +27,17 @@ SHELL := bash
 # Build directory
 BUILD_DIR := build
 
-# List of kiwami packages to build
-KIWAMI_PKGS := kiwami-pkgs kiwami-ppa-pkgs kiwami-scripts
-KIWAMI_PKGS_BUILD := $(KIWAMI_PKGS:%=$(BUILD_DIR)/%.deb)
-
-# List of all packages including kiwami packages
-ALL_PKGS := $(KIWAMI_PKGS) fonts-iosevka
-ALL_PKGS_BUILD := $(ALL_PKGS:%=$(BUILD_DIR)/%.deb)
+# List of packages to build
+PKGS := kiwami-pkgs kiwami-scripts fonts-iosevka
 
 # Dummy targets
 # Building dummy target involves building corresponding deb and installing it.
 # .dummy file is created upon dpkg installation, so we do not install packages
 # that are not outdated
-DUMMY_TGT := $(ALL_PKGS_BUILD:%.deb=%.dummy)
+DUMMY_TGT := $(PKGS:%=$(BUILD_DIR)/%.dummy)
 
-# List of PPAs
-PPA_LIST := ppa.list
-
-# Dummy target for PPA addition
+# List of PPAs and its dummy target
+PPA_LIST  := ppa.list
 DUMMY_PPA := $(PPA_LIST:%=$(BUILD_DIR)/%.dummy)
 
 #######################
@@ -52,7 +47,7 @@ DUMMY_PPA := $(PPA_LIST:%=$(BUILD_DIR)/%.dummy)
 .PHONY: all clean cleanaux
 
 # Build all and install
-all: | $(DUMMY_PPA) $(DUMMY_TGT)
+all: | $(BUILD_DIR) $(DUMMY_PPA) $(DUMMY_TGT)
 
 # Clean up deb and auxiliary outputs
 clean: cleanaux
@@ -80,24 +75,16 @@ $(DUMMY_PPA): $(PPA_LIST)
 	done < $<
 	@touch $@
 
-# Build kiwami packages
-$(KIWAMI_PKGS_BUILD) &: kiwami $(shell find kiwami -type f)
-	@echo "Building kiwami packages..."
-	@rm $(KIWAMI_PKGS_BUILD) || true
-	@cd $< && $(call build_deb)
-	@mkdir -p $(BUILD_DIR)
-	@for pkg in $(KIWAMI_PKGS_BUILD); do \
-		mv `sed 's/$(BUILD_DIR)\/\(.*\)\.deb/\1\*\.deb/' <<< $$pkg` $$pkg; \
-	done
+$(BUILD_DIR)/kiwami-pkgs.deb: kiwami-pkgs $(shell find kiwami-pkgs -type f)
+	$(call build_pkg,$<)
 	$(call clean_aux)
 
-# Build Iosevka package
-$(BUILD_DIR)/fonts-iosevka.deb: iosevka $(shell find iosevka -type f)
-	@echo "Building Iosevka package..."
-	@rm $@ || true
-	@cd $< && $(call build_deb)
-	@mkdir -p $(BUILD_DIR)
-	@mv fonts-iosevka*.deb $@
+$(BUILD_DIR)/kiwami-scripts.deb: kiwami-scripts $(shell find kiwami-scripts -type f)
+	$(call build_pkg,$<)
+	$(call clean_aux)
+
+$(BUILD_DIR)/fonts-iosevka.deb: fonts-iosevka $(shell find fonts-iosevka -type f)
+	$(call build_pkg,$<)
 	$(call clean_aux)
 
 ###########################
@@ -107,3 +94,6 @@ $(BUILD_DIR)/fonts-iosevka.deb: iosevka $(shell find iosevka -type f)
 %.dummy: %.deb
 	sudo dpkg -i $< || sudo apt-get install -fy
 	touch $@
+
+$(BUILD_DIR):
+	mkdir -p $@

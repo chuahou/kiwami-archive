@@ -1,15 +1,10 @@
-Source:            kiwami
+Source:            kiwami-pkgs
 Maintainer:        Chua Hou <human+github@chuahou.dev>
 Section:           misc
 Priority:          optional
 Standards-Version: 3.9.2
 Build-Depends:     debhelper (>= 11)
 Homepage:          https://github.com/chuahou/kiwami
-
-Package:      kiwami-scripts
-Architecture: any
-Depends:      ${shlibs:Depends}, ${misc:Depends}
-Description:  Miscellaneous scripts
 
 Package:      kiwami-pkgs
 Architecture: any
@@ -65,13 +60,7 @@ Depends:      ${shlibs:Depends}, ${misc:Depends},
  libicu-dev,
  libncurses-dev,
  libgmp-dev,
- zlib1g-dev
-Description: Customized metapackage
- Depends on standard apt packages I want.
-
-Package:      kiwami-ppa-pkgs
-Architecture: any
-Depends:      ${shlibs:Depends}, ${misc:Depends},
+ zlib1g-dev,
 # kgilmer/speed-ricer
  compton,
  dunst,
@@ -79,6 +68,5 @@ Depends:      ${shlibs:Depends}, ${misc:Depends},
  i3-gaps,
  polybar,
  rofi
-Description:  Extra PPA source files
- Contains extra packages that can only be installed after adding PPAs. Depends
- on ppa:kgilmer/speed-ricer.
+Description: Customized metapackage
+ Depends on standard apt packages I want.
