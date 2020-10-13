@@ -1,0 +1,13 @@
+Source:            teams-apt-source
+Maintainer:        Chua Hou <human+github@chuahou.dev>
+Section:           misc
+Priority:          optional
+Standards-Version: 3.9.2
+Build-Depends:     debhelper (>= 11)
+Homepage:          https://www.microsoft.com/en-us/microsoft-365/microsoft-teams
+
+Package:      teams-apt-source
+Architecture: any
+Depends:      ${shlibs:Depends}, ${misc:Depends}
+Description:  Microsoft Teams repository
+ Contains package source and GPG key for Microsoft Teams repository

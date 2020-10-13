@@ -1,0 +1,2 @@
+teams.list etc/apt/sources.list.d
+microsoft.gpg etc/apt/trusted.gpg.d

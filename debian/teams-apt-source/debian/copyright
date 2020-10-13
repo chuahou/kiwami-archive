@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Microsoft Teams
+Source: https://www.microsoft.com/en-us/microsoft-365/microsoft-teams/download-app
+
+Files: *
+Copyright: Microsoft Corporation
+
+Files: debian/*
+Copyright: 2020 Chua Hou
+License: MIT
