@@ -1,0 +1,11 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: XXX
+Source: XXX
+
+Files: *
+Copyright: XXX
+License: XXX
+
+Files: debian/*
+Copyright: 2020 Chua Hou
+License: MIT
