@@ -28,8 +28,7 @@ Contents
 
 * `other <other>`_: miscellanous files
 
-* `rcfiles <rcfiles>`_: see `rcfiles repo
-  <https://github.com/chuahou/rcfiles>`_
+* rcfiles: see `rcfiles repo <https://github.com/chuahou/rcfiles>`_
 
 * `zsh-vim-mode <zsh-vim-mode>`_: `this plugin
   <https://github.com/softmoth/zsh-vim-mode>`_ as a submodule for easy
