@@ -1,3 +1,6 @@
 [submodule "rcfiles"]
 	path = rcfiles
 	url = https://github.com/chuahou/rcfiles
+[submodule "zsh-vim-mode"]
+	path = zsh-vim-mode
+	url = https://github.com/softmoth/zsh-vim-mode.git
