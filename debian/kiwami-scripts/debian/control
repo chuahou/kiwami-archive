@@ -8,5 +8,7 @@ Homepage:          https://github.com/chuahou/kiwami
 
 Package:      kiwami-scripts
 Architecture: any
-Depends:      ${shlibs:Depends}, ${misc:Depends}
+Depends:      ${shlibs:Depends}, ${misc:Depends},
+# for check-git's tput
+ ncurses-bin
 Description:  Miscellaneous scripts
