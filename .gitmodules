@@ -1,0 +1,3 @@
+[submodule "rcfiles"]
+	path = rcfiles
+	url = https://github.com/chuahou/rcfiles
