@@ -7,8 +7,8 @@
 set -e
 
 # log files
-readonly LOG_FILE="./setup_nonsudo.log"
-readonly ERR_FILE="./setup_nonsudo.err"
+readonly LOG_FILE="./init.log"
+readonly ERR_FILE="./init.err"
 touch $LOG_FILE
 touch $ERR_FILE
 exec 1> >(tee -a "$LOG_FILE")
