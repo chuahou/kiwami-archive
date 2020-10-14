@@ -17,8 +17,6 @@ exec 2> >(tee -a "$ERR_FILE")
 # use Windows clock system
 timedatectl set-local-rtc 1 --adjust-system-clock
 
-# TODO: dotfiles
-
 # install prerequisite package
 # this depends on, and will trigger the install of, the dependencies needed to
 # build everything else
@@ -33,3 +31,7 @@ kiwami-mgr init
 # install snaps
 snap install spotify
 snap install --classic heroku
+
+# rcup rcfiles
+cp rcfiles/rcrc $HOME/.rcrc
+rcup -i
