@@ -6,6 +6,9 @@
 
 set -e
 
+# check invoked from kiwami directory
+[ $(dirname $0) = "." ]
+
 # log files
 readonly LOG_FILE="./init.log"
 readonly ERR_FILE="./init.err"
