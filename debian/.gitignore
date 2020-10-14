@@ -1,1 +1,9 @@
 build/
+*/debian/files
+*/debian/.debhelper
+*.build
+*.buildinfo
+*.changes
+*.deb
+*.log
+*.substvars

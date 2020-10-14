@@ -1,8 +1,0 @@
-debian/*/debian/files
-debian/*/debian/.debhelper
-debian/*.build
-debian/*.buildinfo
-debian/*.changes
-debian/*.deb
-debian/*.log
-debian/*.substvars
