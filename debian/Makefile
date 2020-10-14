@@ -47,7 +47,7 @@ DUMMY_PPA := $(PPA_LIST:%=$(BUILD_DIR)/%.dummy)
 .PHONY: all clean cleanaux
 
 # Build all and install
-all: | $(BUILD_DIR) $(DUMMY_PPA) $(DUMMY_TGT)
+all: | $(BUILD_DIR) $(DUMMY_PPA) $(DUMMY_TGT) ../prereq.deb
 
 # Clean up deb and auxiliary outputs
 clean: cleanaux
@@ -93,6 +93,11 @@ $(BUILD_DIR)/fonts-iosevka.deb: fonts-iosevka $(shell find fonts-iosevka -type f
 
 $(BUILD_DIR)/teams-apt-source.deb: teams-apt-source $(shell find teams-apt-source -type f)
 	$(call build_pkg,$<)
+	$(call clean_aux)
+
+../prereq.deb: kiwami-prereq $(shell find kiwami-prereq -type f)
+	$(call build_pkg,$<)
+	mv $(BUILD_DIR)/$<.deb $@
 	$(call clean_aux)
 
 $(BUILD_DIR)/teams-apt-source.dummy: $(BUILD_DIR)/teams-apt-source.deb
