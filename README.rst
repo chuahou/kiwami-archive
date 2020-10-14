@@ -45,3 +45,8 @@ Contents
 
 .. |forthebadge| image:: https://forthebadge.com/images/badges/no-ragrets.svg
    :target: https://forthebadge.com
+
+Previously
+==========
+
+RIP `utility repo <https://github.com/chuahou/utility>`_
