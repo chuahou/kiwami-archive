@@ -46,6 +46,7 @@ cpufrequtils
 gawk
 hplip
 libnotify-bin
+rcm
 snapd
 tree
 zsh
