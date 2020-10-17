@@ -6,10 +6,12 @@ set -e
 check-root user || exit 1
 
 # install Oh My Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+[ -d $HOME/.oh-my-zsh ] || \
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # undo the removal of zshrc
-mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+[ -f $HOME/.zshrc.pre-oh-my-zsh ] && \
+	mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
 
 # install powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
