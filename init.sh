@@ -23,13 +23,14 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 # install prerequisite package
 # this depends on, and will trigger the install of, the dependencies needed to
 # build everything else
+sudo apt-get update
 sudo apt-get install ./prereq.deb -y
 
 # install quickdeps used for kiwami metapackages
 QUICKDEP_URL=https://github.com/chuahou/quickdep/releases/download
 QUICKDEP_URL=$QUICKDEP_URL/0.1.1.0/quickdep_0.1.1.0_amd64.deb
 wget -c $QUICKDEP_URL
-sudo apt-get install ./$(basename $QUICKDEP_URL)
+sudo apt-get install ./$(basename $QUICKDEP_URL) -y
 
 # install kiwami debian packages
 make -C debian
