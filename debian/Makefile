@@ -75,9 +75,12 @@ $(DUMMY_PPA): $(PPA_LIST)
 	done < $<
 	@touch $@
 
-$(BUILD_DIR)/kiwami-pkgs.deb: kiwami-pkgs $(shell find kiwami-pkgs -type f)
-	$(call build_pkg,$<)
-	$(call clean_aux)
+$(BUILD_DIR)/%.deb: %.meta
+	grep -v '^\s*#' $< | sed '/^\s*$$/d' | \
+		xargs quickdep $$(sed 's/\.meta$$//' <<< $<)
+	mv $$(sed 's/\.meta$$//' <<< $<)*.deb $@
+
+.PRECIOUS: $(BUILD_DIR)/%.deb
 
 $(BUILD_DIR)/kiwami-scripts.deb: kiwami-scripts $(shell find kiwami-scripts -type f)
 	$(call build_pkg,$<)
@@ -95,10 +98,8 @@ $(BUILD_DIR)/teams-apt-source.deb: teams-apt-source $(shell find teams-apt-sourc
 	$(call build_pkg,$<)
 	$(call clean_aux)
 
-../prereq.deb: kiwami-prereq $(shell find kiwami-prereq -type f)
-	$(call build_pkg,$<)
-	mv $(BUILD_DIR)/$<.deb $@
-	$(call clean_aux)
+../prereq.deb: $(BUILD_DIR)/kiwami-prereq.deb
+	cp $< $@
 
 $(BUILD_DIR)/teams-apt-source.dummy: $(BUILD_DIR)/teams-apt-source.deb
 	sudo dpkg -i $< || sudo apt-get install -fy

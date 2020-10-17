@@ -1,0 +1,4 @@
+build-essential
+devscripts
+debhelper
+make
