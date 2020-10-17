@@ -62,6 +62,7 @@ else
 fi
 
 # download
+mkdir -p $INSTALL_PATH
 check_install_and_download haskell-language-server-wrapper-Linux \
 	$HLS_RELEASES $INSTALL_PATH/haskell-language-server-wrapper
 check_install_and_download haskell-language-server-Linux-$GHC_VER \
