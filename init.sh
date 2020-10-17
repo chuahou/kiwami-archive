@@ -20,28 +20,52 @@ exec 2> >(tee -a "$ERR_FILE")
 # use Windows clock system
 timedatectl set-local-rtc 1 --adjust-system-clock
 
+# update and upgrade apt packages
+if [ ! -f init.stage.apt ]; then
+	sudo apt-get update
+	sudo apt-get upgrade -y
+	touch init.stage.apt
+fi
+
 # install prerequisite package
 # this depends on, and will trigger the install of, the dependencies needed to
 # build everything else
-sudo apt-get update
-sudo apt-get install ./prereq.deb -y
+if [ ! -f init.stage.prereq ]; then
+	sudo apt-get install ./prereq.deb -y
+	touch init.stage.prereq
+fi
 
 # install quickdeps used for kiwami metapackages
-QUICKDEP_URL=https://github.com/chuahou/quickdep/releases/download
-QUICKDEP_URL=$QUICKDEP_URL/0.1.1.0/quickdep_0.1.1.0_amd64.deb
-wget -c $QUICKDEP_URL
-sudo apt-get install ./$(basename $QUICKDEP_URL) -y
+if [ ! -f init.stage.quickdep ]; then
+	QUICKDEP_URL=https://github.com/chuahou/quickdep/releases/download
+	QUICKDEP_URL=$QUICKDEP_URL/0.1.1.0/quickdep_0.1.1.0_amd64.deb
+	wget -c $QUICKDEP_URL
+	sudo apt-get install ./$(basename $QUICKDEP_URL) -y
+	touch init.stage.quickdep
+fi
 
 # install kiwami debian packages
 make -C debian
 
 # install kiwami-mgr packages
-kiwami-mgr init
+if [ ! -f init.stage.kiwami-mgr ]; then
+	kiwami-mgr init
+	touch init.stage.kiwami-mgr
+fi
 
 # install snaps
-snap install spotify
-snap install --classic heroku
+if [ ! -f init.stage.snaps ]; then
+	snap install spotify
+	snap install --classic heroku
+	touch init.stage.snaps
+fi
 
 # rcup rcfiles
-cp rcfiles/rcrc $HOME/.rcrc
-rcup -i
+if [ ! -f init.stage.rcm ]; then
+	cp rcfiles/rcrc $HOME/.rcrc
+	rcup -i
+	touch init.stage.rcm
+fi
+
+# delete stage files
+rm init.stage.*
