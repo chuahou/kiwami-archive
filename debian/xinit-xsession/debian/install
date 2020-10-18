@@ -1,0 +1,2 @@
+userxinitrc usr/bin
+xinitrc.desktop usr/share/xsessions

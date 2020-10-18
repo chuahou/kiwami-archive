@@ -1,0 +1,14 @@
+Source:            xinit-xsession
+Maintainer:        Chua Hou <human+github@chuahou.dev>
+Section:           misc
+Priority:          optional
+Standards-Version: 3.9.2
+Build-Depends:     debhelper (>= 11)
+Homepage:          https://github.com/chuahou/kiwami
+
+Package:      xinit-xsession
+Architecture: any
+Depends:      ${shlibs:Depends}, ${misc:Depends}
+Description:  script and desktop entry for custom xinitrc
+ Custom script and .desktop file to allow direct running from a normal DM
+ (e.g. GDM) of the traditional .xinitrc file.

@@ -28,7 +28,7 @@ SHELL := bash
 BUILD_DIR := build
 
 # List of packages to build
-PKGS := kiwami-pkgs kiwami-scripts kiwami-mgr fonts-iosevka teams-apt-source
+PKGS := kiwami-pkgs kiwami-scripts kiwami-mgr fonts-iosevka teams-apt-source xinit-xsession
 
 # Dummy targets
 # Building dummy target involves building corresponding deb and installing it.
@@ -95,6 +95,10 @@ $(BUILD_DIR)/fonts-iosevka.deb: fonts-iosevka $(shell find fonts-iosevka -type f
 	$(call clean_aux)
 
 $(BUILD_DIR)/teams-apt-source.deb: teams-apt-source $(shell find teams-apt-source -type f)
+	$(call build_pkg,$<)
+	$(call clean_aux)
+
+$(BUILD_DIR)/xinit-xsession.deb: xinit-xsession $(shell find xinit-xsession -type f)
 	$(call build_pkg,$<)
 	$(call clean_aux)
 
