@@ -68,23 +68,23 @@ if [ ! -f init.stage.rcm ]; then
 fi
 
 # rename userdirs
-move_userdir () {
-	if [ -d $HOME/$1 ]; then
-		DEST=$HOME/$(sed -n "s/XDG_$2_DIR=\"\$HOME\/\([^\"]*\)\"/\1/p" \
-				$HOME/.config/user-dirs.dirs)
-		mkdir -p $(dirname $DEST)
-		mv $HOME/$1 $DEST
+del_userdir () {
+	if [ -d $1 ]; then
+		read -p "Remove directory $1? [yn] " yn
+		case $yn in
+			[Yy]) rm -rf $1 ;;
+			*) echo "Skipping $1" ;;
+		esac
 	fi
 }
 if [ ! -f init.stage.userdirs ]; then
-	move_userdir Desktop DESKTOP
-	move_userdir Downloads DOWNLOAD
-	move_userdir Templates TEMPLATES
-	move_userdir Public PUBLICSHARE
-	move_userdir Documents DOCUMENTS
-	move_userdir Music MUSIC
-	move_userdir Pictures PICTURES
-	move_userdir Videos VIDEOS
+	for i in Desktop Downloads Templates Public Documents Music Pictures Videos
+	do
+		del_userdir $HOME/$i
+	done
+	mkdir -p $(sed -n 's/^.*="$HOME\/\(.*\)"$/\1/p' ~/.config/user-dirs.dirs \
+		| uniq | xargs printf "$HOME/%s ")
+	touch init.stage.userdirs
 fi
 
 # delete stage files
