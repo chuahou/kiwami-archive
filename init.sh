@@ -67,5 +67,25 @@ if [ ! -f init.stage.rcm ]; then
 	touch init.stage.rcm
 fi
 
+# rename userdirs
+move_userdir () {
+	if [ -d $HOME/$1 ]; then
+		DEST=$HOME/$(sed -n "s/XDG_$2_DIR=\"\$HOME\/\([^\"]*\)\"/\1/p" \
+				$HOME/.config/user-dirs.dirs)
+		mkdir -p $(dirname $DEST)
+		mv $HOME/$1 $DEST
+	fi
+}
+if [ ! -f init.stage.userdirs ]; then
+	move_userdir Desktop DESKTOP
+	move_userdir Downloads DOWNLOAD
+	move_userdir Templates TEMPLATES
+	move_userdir Public PUBLICSHARE
+	move_userdir Documents DOCUMENTS
+	move_userdir Music MUSIC
+	move_userdir Pictures PICTURES
+	move_userdir Videos VIDEOS
+fi
+
 # delete stage files
 rm init.stage.*
