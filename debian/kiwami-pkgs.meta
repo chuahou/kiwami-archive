@@ -64,7 +64,8 @@ zlib1g-dev
 
 # vanilla rice
 feh
-i3-lock
+i3lock
+lxappearance
 
 # kgilmer/speed-ricer
 compton
