@@ -9,7 +9,6 @@ meld
 # User programs
 alacritty
 discord
-feh
 flameshot
 gimp
 neovim
@@ -62,6 +61,10 @@ libicu-dev
 libncurses-dev
 libgmp-dev
 zlib1g-dev
+
+# vanilla rice
+feh
+i3-lock
 
 # kgilmer/speed-ricer
 compton
