@@ -34,11 +34,9 @@ Contents
   <https://github.com/softmoth/zsh-vim-mode>`_ as a submodule for easy
   installation using symlinks in `rcfiles <rcfiles>`_
 
-* `prereq.deb <prereq.deb>`_: the packages in `debian/ <debian>`_
-  require some tools to build. This is the prebuilt metapackage of
-  `kiwami-prereq <debian/kiwami-prereq>`_, so that a fresh system can
-  install this prior to building and installing everything in `debian/
-  <debian>`_
+* `binaries <binaries>`_: prebuilt binary packages. ``predep.deb`` must
+  be installed before we can build the debian folder, and the others are
+  binaries from other projects
 
 * `init.sh <init.sh>`_: script that does *everything* for a fresh system
 

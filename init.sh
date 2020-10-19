@@ -27,21 +27,12 @@ if [ ! -f init.stage.apt ]; then
 	touch init.stage.apt
 fi
 
-# install prerequisite package
+# install prerequisite package and prebuild packages
 # this depends on, and will trigger the install of, the dependencies needed to
 # build everything else
 if [ ! -f init.stage.prereq ]; then
-	sudo apt-get install ./prereq.deb -y
+	sudo apt-get install ./binaries/*.deb -y
 	touch init.stage.prereq
-fi
-
-# install quickdeps used for kiwami metapackages
-if [ ! -f init.stage.quickdep ]; then
-	QUICKDEP_URL=https://github.com/chuahou/quickdep/releases/download
-	QUICKDEP_URL=$QUICKDEP_URL/0.1.1.0/quickdep_0.1.1.0_amd64.deb
-	wget -c $QUICKDEP_URL
-	sudo apt-get install ./$(basename $QUICKDEP_URL) -y
-	touch init.stage.quickdep
 fi
 
 # install kiwami debian packages
