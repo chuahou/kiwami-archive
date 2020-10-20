@@ -116,7 +116,7 @@ $(BUILD_DIR)/teams-apt-source.dummy: $(BUILD_DIR)/teams-apt-source.deb
 ###########################
 
 %.dummy: %.deb
-	sudo dpkg -i $< || sudo apt-get install -fy
+	sudo apt-get install -y ./$<
 	touch $@
 
 $(BUILD_DIR):
