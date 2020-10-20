@@ -63,6 +63,7 @@ libgmp-dev
 zlib1g-dev
 
 # vanilla rice
+arandr
 feh
 i3lock
 lxappearance
