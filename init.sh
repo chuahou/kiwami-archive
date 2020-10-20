@@ -20,6 +20,9 @@ exec 2> >(tee -a "$ERR_FILE")
 # use Windows clock system
 timedatectl set-local-rtc 1 --adjust-system-clock
 
+# add self to video group to control backlight
+sudo usermod -a -G video $USER
+
 # update and upgrade apt packages
 if [ ! -f init.stage.apt ]; then
 	sudo apt-get update
