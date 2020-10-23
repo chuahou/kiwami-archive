@@ -72,6 +72,12 @@ for dir in $(find "$TGT_DIR" -mindepth 1 -maxdepth 1 -type d); do
 		print_status=$((print_status + 1))
 	fi
 
+	# check at least 1 remote
+	if [ -z $(git -C "$dir" remote) ]; then
+		fancy_print "$dir"
+		echo "WARNING: $dir has no git remote"
+	fi
+
 	# print status if necessary
 	if [ "$print_status" -gt 0 ]; then
 		fancy_print "$dir"
