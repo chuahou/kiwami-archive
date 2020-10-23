@@ -43,6 +43,7 @@ ibus-mozc
 mozc-utils-gui
 
 # System
+blueman
 curl
 cpufrequtils
 gawk
