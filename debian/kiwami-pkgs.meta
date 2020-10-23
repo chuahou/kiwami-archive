@@ -81,5 +81,4 @@ polybar
 rofi
 
 # Security practicals
-default-jdk
-default-jre
+openjdk-8-jdk
