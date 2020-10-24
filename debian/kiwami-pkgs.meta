@@ -54,6 +54,10 @@ snapd
 tree
 zsh
 
+# btrfs
+apt-btrfs-snapshot
+btrfs-progs
+
 # For coc.nvim
 nodejs
 npm
