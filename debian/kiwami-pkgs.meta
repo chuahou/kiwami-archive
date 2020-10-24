@@ -5,6 +5,7 @@ git
 gitg
 haskell-platform
 meld
+pdf2svg
 
 # User programs
 alacritty
@@ -14,11 +15,8 @@ gimp
 gparted
 neovim
 libreoffice
-nautilus-dropbox
 obs-studio
 pandoc
-pavucontrol
-pdf2svg
 pdftk
 telegram-desktop
 vlc
@@ -49,6 +47,9 @@ cpufrequtils
 gawk
 hplip
 libnotify-bin
+nautilus-dropbox
+network-manager-gnome
+pavucontrol
 rcm
 snapd
 tree
