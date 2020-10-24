@@ -41,6 +41,7 @@ ibus-mozc
 mozc-utils-gui
 
 # System
+anacron
 blueman
 curl
 cpufrequtils
