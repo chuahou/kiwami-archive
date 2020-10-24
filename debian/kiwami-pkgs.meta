@@ -48,6 +48,7 @@ cpufrequtils
 gawk
 hplip
 libnotify-bin
+lm-sensors
 nautilus-dropbox
 network-manager-gnome
 pavucontrol
