@@ -6,6 +6,8 @@ gitg
 haskell-platform
 meld
 pdf2svg
+python3
+python3-venv
 
 # User programs
 alacritty
