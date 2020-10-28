@@ -91,3 +91,6 @@ rofi
 
 # Security practicals
 openjdk-8-jdk
+
+# Ocaml for compilers
+ocaml-nox
