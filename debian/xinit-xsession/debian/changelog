@@ -1,3 +1,9 @@
+xinit-xsession (0.1.0.1) UNRELEASED; urgency=medium
+
+  * Change desktop name (should not have spaces).
+
+ -- Chua Hou <human+github@chuahou.dev>  Sat 31 Oct 2020 05:47:42 PM +08
+
 xinit-xsession (0.1.0.0) UNRELEASED; urgency=medium
 
   * This changelog will not be maintained. See

@@ -5,4 +5,4 @@
 Name=Custom .xinitrc
 Exec=userxinitrc
 Type=Application
-DesktopNames=Custom .xinitrc
+DesktopNames=custom:xinitrc
