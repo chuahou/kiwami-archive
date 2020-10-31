@@ -38,8 +38,7 @@ fonts-materialdesignicons-webfont
 ttf-mscorefonts-installer
 
 # IME
-ibus
-ibus-mozc
+fcitx-mozc
 mozc-utils-gui
 
 # System
@@ -51,6 +50,7 @@ gawk
 hplip
 libnotify-bin
 lm-sensors
+mate-polkit
 nautilus-dropbox
 network-manager-gnome
 pavucontrol
@@ -75,6 +75,7 @@ zlib1g-dev
 
 # vanilla rice
 arandr
+dunst
 feh
 i3lock
 light
@@ -83,7 +84,6 @@ playerctl
 
 # kgilmer/speed-ricer
 compton
-dunst
 fonts-source-code-pro-ttf
 i3-gaps
 polybar
