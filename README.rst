@@ -5,7 +5,7 @@ kiwami
 |forthebadge|
 
 A personal utility repository for (more or less) reproducible setups on
-Pop!_OS systems.
+Pop!_OS systems. Current version for Pop!_OS 20.04.
 
 Contents
 ========
@@ -25,6 +25,9 @@ Contents
   * `teams-apt-source <debian/teams-apt-source>`_: a package containing
     the apt source and GPG key for Microsoft Teams, as I was unhappy
     with the default package not cleanly uninstalling
+  * `xinit-xsession <debian/xinit-xsession>`_: a simple package
+    containing a script and desktop file to run ``$HOME/.xinitrc`` from
+    a display manager
 
 * `other <other>`_: miscellanous files
 
