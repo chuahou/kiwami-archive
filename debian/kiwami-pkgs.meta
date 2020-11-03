@@ -96,3 +96,7 @@ openjdk-8-jdk
 
 # Ocaml for compilers
 ocaml-nox
+
+# school VPN
+network-manager-vpnc
+network-manager-vpnc-gnome
