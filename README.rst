@@ -1,3 +1,8 @@
+The updated repository can be found at `chuahou/kiwami
+<https://github.com/chuahou/kiwami>`_. This is an archived version prior
+to a large (destructive) rebase, that removed all traces (hopefully) of
+Iosevka binaries from the repository.
+
 ######
 kiwami
 ######
