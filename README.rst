@@ -20,8 +20,6 @@ Contents
     apt packages I want installed
   * `kiwami-scripts <debian/kiwami-scripts>`_: a collection of useful
     scripts
-  * `fonts-iosevka <debian/fonts-iosevka>`_: `Iosevka
-    <https://github.com/be5invis/Iosevka>`_ as a debian package
   * `teams-apt-source <debian/teams-apt-source>`_: a package containing
     the apt source and GPG key for Microsoft Teams, as I was unhappy
     with the default package not cleanly uninstalling
